@@ -3,7 +3,7 @@ const router = express.Router()
 const db = require('../db/db')
 
 // get by id
-router.get('/book/:id', function (req, res, next) {
+router.get('/info/:id', function (req, res, next) {
   const id = req.params.id
   db.get('SELECT * FROM catalog WHERE rowid  = ?', [id], (err, row) => {
     if (err) {
@@ -14,7 +14,7 @@ router.get('/book/:id', function (req, res, next) {
 })
 
 // get by topic
-router.get('/book', function (req, res, next) {
+router.get('/search', function (req, res, next) {
   const query = req.query
   db.all(`SELECT * FROM catalog WHERE topic = ?`, [query.topic], (err, rows) => {
     if (err) {
